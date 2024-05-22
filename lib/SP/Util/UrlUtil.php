@@ -41,6 +41,10 @@ final class UrlUtil
         if (!$polrUrl || !$polrApiKey)
             return $url;
 
-        return file_get_contents($polrUrl."/api/v2/action/shorten?key=".$polrApiKey."&url=".urlencode($url));
+        $result = file_get_contents($polrUrl."/api/v2/action/shorten?key=".$polrApiKey."&url=".urlencode($url));
+        if (!$result)
+            return $url;
+
+        return $result;
     }
 }
